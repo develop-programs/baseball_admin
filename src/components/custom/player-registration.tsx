@@ -1,8 +1,8 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import {zodResolver} from "@hookform/resolvers/zod"
+import {useForm} from "react-hook-form"
+import {z} from "zod"
 import {
     Form,
     FormControl,
@@ -18,9 +18,9 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { Button } from "@/components/ui/button"
-import { useState, useEffect } from "react"
-import { ArrowRightCircle } from "lucide-react"
+import {Button} from "@/components/ui/button"
+import {useState, useEffect} from "react"
+import {ArrowRightCircle} from "lucide-react"
 
 // Define the geographic data structure for India
 const indiaRegions = [
@@ -135,10 +135,12 @@ export function PlayerRegistration() {
     }, [selectedState, form]);
 
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values)
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        // Store the location info in session storage for the next step
+        sessionStorage.setItem('playerLocation', JSON.stringify(values));
+        
+        // Navigate to the player information page
+        window.location.href = '/player';
     }
 
     return (
@@ -148,7 +150,7 @@ export function PlayerRegistration() {
                 <FormField
                     control={form.control}
                     name="region"
-                    render={({ field }) => (
+                    render={({field}) => (
                         <FormItem>
                             <FormLabel>Region</FormLabel>
                             <FormControl>
@@ -157,7 +159,7 @@ export function PlayerRegistration() {
                                     defaultValue={field.value}
                                 >
                                     <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Select a region" />
+                                        <SelectValue placeholder="Select a region"/>
                                     </SelectTrigger>
                                     <SelectContent>
                                         {indiaRegions.map((region) => (
@@ -168,14 +170,14 @@ export function PlayerRegistration() {
                                     </SelectContent>
                                 </Select>
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage/>
                         </FormItem>
                     )}
                 />
                 <FormField
                     control={form.control}
                     name="state"
-                    render={({ field }) => (
+                    render={({field}) => (
                         <FormItem>
                             <FormLabel>State</FormLabel>
                             <FormControl>
@@ -185,7 +187,7 @@ export function PlayerRegistration() {
                                     disabled={!selectedRegion}
                                 >
                                     <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Select a state" />
+                                        <SelectValue placeholder="Select a state"/>
                                     </SelectTrigger>
                                     <SelectContent>
                                         {availableStates.map((state) => (
@@ -196,14 +198,14 @@ export function PlayerRegistration() {
                                     </SelectContent>
                                 </Select>
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage/>
                         </FormItem>
                     )}
                 />
                 <FormField
                     control={form.control}
                     name="district"
-                    render={({ field }) => (
+                    render={({field}) => (
                         <FormItem>
                             <FormLabel>District</FormLabel>
                             <FormControl>
@@ -213,7 +215,7 @@ export function PlayerRegistration() {
                                     disabled={!selectedState}
                                 >
                                     <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Select a district" />
+                                        <SelectValue placeholder="Select a district"/>
                                     </SelectTrigger>
                                     <SelectContent>
                                         {availableDistricts.map((district) => (
@@ -224,11 +226,12 @@ export function PlayerRegistration() {
                                     </SelectContent>
                                 </Select>
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage/>
                         </FormItem>
                     )}
                 />
-                <Button type="submit" size="lg" className="bg-blue-500 hover:bg-blue-500/80">Continue <ArrowRightCircle /></Button>
+                <Button type="submit" size="lg"
+                        className="bg-blue-500 hover:bg-blue-500/80">Continue <ArrowRightCircle/></Button>
             </form>
         </Form>
     )
