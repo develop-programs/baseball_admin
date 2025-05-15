@@ -143,7 +143,7 @@ export function PlayerInformation() {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <FormField
                         control={form.control}
                         name="fullName"
@@ -151,7 +151,7 @@ export function PlayerInformation() {
                             <FormItem>
                                 <FormLabel>Full Name</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Enter your full name" {...field} />
+                                    <Input placeholder="Enter your full name" {...field} className="w-full" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -279,6 +279,7 @@ export function PlayerInformation() {
                                             type="file"
                                             accept="image/*"
                                             onChange={(e) => handleImageUpload(e, "profileimg", setProfileImgPreview)}
+                                            className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                                         />
                                         {profileImgPreview && (
                                             <div className="mt-2">
@@ -337,11 +338,11 @@ export function PlayerInformation() {
                 <Button
                     type="submit"
                     size="lg"
-                    className="bg-blue-500 hover:bg-blue-500/80 mt-4"
+                    className="w-full md:w-auto bg-blue-500 hover:bg-blue-500/80 mt-4 transition-all"
                     disabled={isSubmitting}
                 >
                     {isSubmitting ? 'Submitting...' : 'Submit Registration'}
-                    {!isSubmitting && <ArrowRightCircle className="ml-2" />}
+                    {!isSubmitting && <ArrowRightCircle className="ml-2 h-4 w-4" />}
                 </Button>
 
                 {submitResult && (

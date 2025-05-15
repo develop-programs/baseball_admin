@@ -4,8 +4,8 @@ import { getServerSession } from "next-auth/next"
 import { redirect } from "next/navigation"
 import { authOptions } from "@/lib/auth"
 import { DashboardStats } from "@/components/custom/dashboard-stats"
-import { LogOut } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import LogOutButton from "@/components/custom/LogOut"
+
 
 async function getData(): Promise<Player[]> {
     // Fetch data from your API
@@ -50,12 +50,7 @@ export default async function AdminPage() {
                     <div className="text-sm text-gray-500">
                         Logged in as <span className="font-medium">{session.user?.name}</span>
                     </div>
-                    <form action="/api/auth/signout" method="post">
-                        <Button variant="outline" size="sm" className="h-9">
-                            <LogOut className="mr-2 h-4 w-4" />
-                            Sign out
-                        </Button>
-                    </form>
+                    <LogOutButton />
                 </div>
             </div>
 

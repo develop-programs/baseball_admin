@@ -1,7 +1,40 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Mobile-first responsive styles */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Make images responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 @custom-variant dark (&:is(.dark *));
+
+/* Mobile-first responsive styles */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Custom media queries for responsive design */
+@custom-media --mobile (max-width: 640px);
+@custom-media --tablet (min-width: 641px) and (max-width: 1024px);
+@custom-media --desktop (min-width: 1025px);
 
 @theme inline {
   --color-background: var(--background);

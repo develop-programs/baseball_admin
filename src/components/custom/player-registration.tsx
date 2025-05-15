@@ -230,8 +230,13 @@ export function PlayerRegistration() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit" size="lg"
-                        className="bg-blue-500 hover:bg-blue-500/80">Continue <ArrowRightCircle/></Button>
+                <Button 
+                    type="submit" 
+                    size="lg"
+                    className="w-full md:w-auto mt-2 bg-blue-500 hover:bg-blue-500/80 transition-all"
+                >
+                    Continue <ArrowRightCircle className="ml-2 h-4 w-4"/>
+                </Button>
             </form>
         </Form>
     )
