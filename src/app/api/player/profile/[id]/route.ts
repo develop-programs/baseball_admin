@@ -52,6 +52,7 @@ export async function GET(
         addhaar: player.addhaar,
         email: player.email,
         profileimg: player.profileimg,
+        addharImg: player.addharImg,
         region: player.region,
         state: player.state,
         district: player.district,
